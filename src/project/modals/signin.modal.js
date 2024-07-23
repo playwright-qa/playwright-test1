@@ -19,10 +19,6 @@ export class SigninModal {
 
     };
 
-    async isVisible() {
-        await expect(this.elements.modal()).toBeVisible()
-    }
-
     async logIn(registrationData) {
         await this.elements.emailField().fill(registrationData.email);
         await this.elements.passwordField().fill(registrationData.password);
