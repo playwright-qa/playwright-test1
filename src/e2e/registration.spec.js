@@ -1,11 +1,6 @@
-import {HomePage} from "../project/pages/home.page";
-import {test} from "@playwright/test";
-import {SignupModal} from "../project/modals/signup.modal";
-import {SigninModal} from "../project/modals/signin.modal";
-import {getRegistrationData} from "../utils/registration-data";
-import {HeaderMenu} from "../project/pages/header-menu.page";
-import {PersonalAreaPage} from "../project/pages/personal.area.page";
-
+import { getRegistrationData } from "../utils/registration-data";
+import { UserActions } from "../project/user-actions";
+import { test } from '@playwright/test';
 
 test.describe('Check registration form', () => {
 
@@ -15,30 +10,19 @@ test.describe('Check registration form', () => {
 
     test('Register new customer and login', async ({ page }) => {
         const registrationData = getRegistrationData();
+        const userActions = new UserActions(page);
 
-        await new HomePage(page).clickOnSignUpBtn();
-        await new SignupModal(page).registerNewCustomer(registrationData);
-        await new PersonalAreaPage(page).clickOnLogoutBtn();
-        await new HeaderMenu(page).clickOnSignInBtn();
-        await new SigninModal(page).logIn(registrationData);
+        await userActions.registerNewCustomer(registrationData);
+        await userActions.logout();
+        await userActions.login(registrationData);
     });
 
     test('Check validation errors', async ({ page }) => {
-        const signupModal = await new SignupModal(page);
-        const headerMenu = new HeaderMenu(page);
         const registrationData = getRegistrationData();
+        const userActions = new UserActions(page);
 
-        await new HomePage(page).clickOnSignUpBtn();
-        await signupModal.checkRegistrationBtnIsDisabled();
-        await signupModal.checkNameField(registrationData);
-        await signupModal.checkLastNameField(registrationData);
-        await signupModal.checkEmailField(registrationData);
-        await signupModal.checkPasswordFields(registrationData);
-        await signupModal.clickOnRegisterBtn();
-        await new PersonalAreaPage(page).clickOnLogoutBtn();
-        await headerMenu.clickOnSignInBtn();
-        await new SigninModal(page).logIn(registrationData);
-        await headerMenu.isLoginSuccess();
+        await userActions.checkValidationErrors(registrationData);
+        await userActions.logout();
+        await userActions.login(registrationData);
     });
 });
-

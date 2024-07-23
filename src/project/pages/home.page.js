@@ -3,18 +3,12 @@ import { expect } from 'playwright/test';
 
 export class HomePage {
 
-    constructor(
-        page
-    ) {
+    constructor(page) {
         this.page = page;
+        this.signUpBtn = this.page.locator('.hero-descriptor_btn');
     }
 
-    elements = {
-        signUpBtn: () => this.page.locator('.hero-descriptor_btn'),
-
-    };
-
     async clickOnSignUpBtn() {
-        await this.elements.signUpBtn().click();
+        await this.signUpBtn.click();
     }
 }

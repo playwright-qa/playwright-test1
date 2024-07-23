@@ -3,24 +3,17 @@ import { expect } from 'playwright/test';
 
 export class HeaderMenu {
 
-    constructor(
-        page
-    ) {
+    constructor(page) {
         this.page = page;
+        this.signInBtn = this.page.locator('.header_signin');
+        this.myProfileBtn = this.page.locator('#userNavDropdown');
     }
-
-
-    elements = {
-        signInBtn: () => this.page.locator('.header_signin'),
-        myProfileBtn: () => this.page.locator('#userNavDropdown'),
-
-    };
 
     async clickOnSignInBtn() {
-        await this.elements.signInBtn().click();
+        await this.signInBtn.click();
     }
 
-    async isLoginSuccess(){
-        await expect(this.elements.myProfileBtn()).toBeVisible();
+    async isMyProfileBtnVisible(){
+        await expect(this.myProfileBtn).toBeVisible();
     }
 }
