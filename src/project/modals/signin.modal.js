@@ -15,8 +15,6 @@ export class SigninModal {
         passwordField: () => this.page.locator('#signinPassword'),
         rememberCheckbox: () => this.page.locator('#remember'),
         logInBtn: () => this.page.locator('.modal-footer .btn-primary'),
-
-
     };
 
     async logIn(registrationData) {
@@ -24,7 +22,5 @@ export class SigninModal {
         await this.elements.passwordField().fill(registrationData.password);
         await this.elements.rememberCheckbox().check();
         await this.elements.logInBtn().click();
-
-
     }
 }
