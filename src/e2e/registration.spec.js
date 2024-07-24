@@ -5,7 +5,7 @@ import { test } from '@playwright/test';
 test.describe('Check registration form', () => {
 
     test.beforeEach(async ({ page }) => {
-        await page.goto('https://qauto.forstudy.space/');
+        await page.goto('/');
     });
 
     test('Register new customer and login', async ({ page }) => {
@@ -23,6 +23,5 @@ test.describe('Check registration form', () => {
 
         await userActions.checkValidationErrors(registrationData);
         await userActions.logout();
-        await userActions.login(registrationData);
     });
 });
