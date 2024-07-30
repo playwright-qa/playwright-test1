@@ -1,4 +1,5 @@
 // @ts-check
+import dotenv from "dotenv";
 const { defineConfig, devices } = require('@playwright/test');
 
 /**
@@ -6,6 +7,7 @@ const { defineConfig, devices } = require('@playwright/test');
  * https://github.com/motdotla/dotenv
  */
 // require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+dotenv.config({ path: './.env' });
 
 /**
  * @see https://playwright.dev/docs/test-configuration
@@ -26,10 +28,10 @@ module.exports = defineConfig({
   use: {
     headless: false,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'https://qauto.forstudy.space/',
+    baseURL: process.env.BASE_URL,
     httpCredentials: {
-      username: 'guest',
-      password: 'welcome2qauto'
+      username: process.env.HTTP_CREDENTIALS_USERNAME,
+      password: process.env.HTTP_CREDENTIALS_PASSWORD
     },
     viewport: {
       width: 1920,
