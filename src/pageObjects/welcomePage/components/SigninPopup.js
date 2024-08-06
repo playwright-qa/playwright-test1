@@ -1,4 +1,5 @@
 import BaseComponent from "../../../components/BaseComponent";
+import {USERS} from "../../../data/users";
 
 export default class SignInPopup extends BaseComponent {
     constructor(page) {
@@ -8,9 +9,9 @@ export default class SignInPopup extends BaseComponent {
         this.loginBtn =  this.container.locator('.btn-primary')
     }
 
-    async login (registrationData){
-        await this.emailInput.fill(registrationData.email);
-        await this.passwordInput.fill(registrationData.password);
+    async login (){
+        await this.emailInput.fill(USERS.USER1.email);
+        await this.passwordInput.fill(USERS.USER1.password);
         await this.loginBtn.click()
     }
 }
