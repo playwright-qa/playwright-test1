@@ -22,7 +22,8 @@ test('Substitute response body and verify data on the page', async ({ page}) => 
     })
 
     await page.reload()
+    const expectedFullName = `${mockedProfileData.data.name} ${mockedProfileData.data.lastName}`;
     const profileName = await page.locator('.profile_name');
-    await expect(profileName).toContainText('Test Last');
+    await expect(profileName).toContainText(expectedFullName);
     });
 });
