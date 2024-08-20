@@ -26,6 +26,5 @@ test.describe("Edit car with controller", ()=>{
         expect(data.data.carBrandId).toBe(requestBody.carBrandId);
         expect(data.data.carModelId).toBe(requestBody.carModelId);
         expect(data.data.mileage).toBe(requestBody.mileage);
-        //delete car after test
     });
 });
