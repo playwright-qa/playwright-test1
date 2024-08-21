@@ -4,9 +4,7 @@ RUN mkdir playwright-tests
 
 WORKDIR playwright-tests
 
-COPY src .
-
-RUN rm -rf
+COPY . .
 
 RUN npm ci
 
