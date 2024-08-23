@@ -30,4 +30,4 @@ jobs:
         with:
           name: ci-report
           path: playwright-report/
-          retention-days: 1
+          retention-days: 2
